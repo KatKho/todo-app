@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import useForm from '../../hooks/form';
-
 import { v4 as uuid } from 'uuid';
+import List from '../List';
+import { Button, TextInput, Paper, Text, Slider } from '@mantine/core';
+import './styles.scss';
 
 const Todo = () => {
 
@@ -19,24 +21,6 @@ const Todo = () => {
     setList([...list, item]);
   }
 
-  function deleteItem(id) {
-    const items = list.filter( item => item.id !== id );
-    setList(items);
-  }
-
-  function toggleComplete(id) {
-
-    const items = list.map( item => {
-      if ( item.id === id ) {
-        item.complete = ! item.complete;
-      }
-      return item;
-    });
-
-    setList(items);
-
-  }
-
   useEffect(() => {
     let incompleteCount = list.filter(item => !item.complete).length;
     setIncomplete(incompleteCount);
@@ -47,46 +31,38 @@ const Todo = () => {
   }, [list]);  
 
   return (
-    <>
-      <header data-testid="todo-header">
-        <h1 data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
-      </header>
+    <div className="todo-app">
+      <Paper padding="md" className="todo-header" data-testid="todo-header"> 
+        <Text align="center" size="xl" >
+          To Do List: {incomplete} items pending
+        </Text>
+      </Paper>
 
       <form onSubmit={handleSubmit}>
 
-        <h2>Add To Do Item</h2>
+      <Paper padding="md" className="todo-form">
+        <Text size="lg">Add To Do Item</Text>
 
-        <label>
-          <span>To Do Item</span>
-          <input onChange={handleChange} name="text" type="text" placeholder="Item Details" />
-        </label>
-
-        <label>
-          <span>Assigned To</span>
-          <input onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
-        </label>
-
-        <label>
-          <span>Difficulty</span>
-          <input onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
-        </label>
-
-        <label>
-          <button type="submit">Add Item</button>
-        </label>
-      </form>
-
-      {list.map(item => (
-        <div key={item.id}>
-          <p>{item.text}</p>
-          <p><small>Assigned to: {item.assignee}</small></p>
-          <p><small>Difficulty: {item.difficulty}</small></p>
-          <div onClick={() => toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
-          <hr />
+        <div className="input-group">
+          <TextInput label="To Do Item" placeholder="Item Details" onChange={handleChange} name="text" />
         </div>
-      ))}
 
-    </>
+        <div className="input-group">
+          <TextInput label="Assigned To" placeholder="Assignee Name" onChange={handleChange} name="assignee" />
+        </div>
+
+        <div className="input-group">
+          <Text>Difficulty</Text>
+          <Slider onChange={handleChange} defaultValue={defaultValues.difficulty} min={1} max={5} name="difficulty" />
+        </div>
+
+        <Button type="submit" fullWidth>
+          Add Item
+        </Button>
+      </Paper>
+      </form>
+      <List list={list} setList={setList} />
+    </div>
   );
 };
 

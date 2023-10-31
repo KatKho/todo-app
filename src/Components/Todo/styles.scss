@@ -1,0 +1,20 @@
+.todo-app {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6f9;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+  
+    .todo-header, .todo-form {
+      margin-bottom: 1rem;
+    }
+  
+    .input-group {
+      margin-bottom: 1rem;
+  
+      & > input {
+        width: 100%;
+      }
+    }
+  }
+  
