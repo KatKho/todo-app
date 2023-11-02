@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { SettingsContext } from '../../Context/Settings';
 import { Pagination, Paper, Button } from '@mantine/core';
 import './styles.scss';
+import Auth from '../Auth/auth';
 
 const List = ({ list, setList }) => {
   const [settings] = useContext(SettingsContext);
@@ -16,10 +17,10 @@ const List = ({ list, setList }) => {
     setList(items);
   };
 
-  // function deleteItem(id) {
-  //   const items = list.filter( item => item.id !== id );
-  //   setList(items);
-  // }
+  function deleteItem(id) {
+    const items = list.filter( item => item.id !== id );
+    setList(items);
+  }
 
   const filteredList = settings.hideCompleted ? list : list.filter(item => !item.complete);
 
@@ -35,11 +36,29 @@ const List = ({ list, setList }) => {
 
   return (
     <>
+    <Auth capability={"read"}>
       {displayedItems.map(item => (
             <Paper shadow='lg' radius='lg' p='xl' key={item.id} className="list">
-              <Button onClick={() => toggleComplete(item.id)}>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+               {/* <Auth capability='update'> */}
+               
+              <Button 
+                onClick={() => toggleComplete(item.id)}
+                color={item.complete ? 'red' : 'green'}
+              >
                 {item.complete ? 'Completed' : 'Pending'}
               </Button>
+              {/* </Auth> */}
+              {/* <Auth capability='delete'> */}
+              <Button
+              onClick={() => deleteItem(item.id)}
+              color='red'
+              style={{ marginLeft: '10px' }}
+            >
+              x
+            </Button>
+            {/* </Auth> */}
+            </div>
               <p>{item.text}</p>
               <p><small>Assigned to: {item.assignee}</small></p>
               <p><small>Difficulty: {item.difficulty}</small></p>
@@ -57,6 +76,7 @@ const List = ({ list, setList }) => {
         />
         </div>
       )}
+      </Auth>
     </>
   );
 };
