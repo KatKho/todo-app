@@ -36,28 +36,27 @@ const List = ({ list, setList }) => {
 
   return (
     <>
-    <Auth capability={"read"}>
+    <Auth capibility='read'>
       {displayedItems.map(item => (
             <Paper shadow='lg' radius='lg' p='xl' key={item.id} className="list">
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-               {/* <Auth capability='update'> */}
-               
+               <Auth capability='update'>
               <Button 
                 onClick={() => toggleComplete(item.id)}
                 color={item.complete ? 'red' : 'green'}
               >
                 {item.complete ? 'Completed' : 'Pending'}
               </Button>
-              {/* </Auth> */}
-              {/* <Auth capability='delete'> */}
+              </Auth>
+              <Auth capability='delete'>
               <Button
               onClick={() => deleteItem(item.id)}
               color='red'
               style={{ marginLeft: '10px' }}
-            >
-              x
-            </Button>
-            {/* </Auth> */}
+              >
+                x
+              </Button>
+            </Auth>
             </div>
               <p>{item.text}</p>
               <p><small>Assigned to: {item.assignee}</small></p>

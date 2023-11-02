@@ -11,14 +11,14 @@ import Auth from './Components/Auth/auth';
 export default class App extends React.Component {
   render() {
     return (
-      <SettingsProvider>
+      <SettingsProvider> 
         <LoginProvider>
           <MantineProvider>
             <Header />
             {/* <Login /> */}
-              <Auth>
-                <Todo />
-              </Auth>
+            <Auth>
+              <Todo />
+            </Auth>
           </MantineProvider>
         </LoginProvider>
       </SettingsProvider>
