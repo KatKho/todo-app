@@ -37,7 +37,10 @@ const List = ({ list, setList }) => {
     <>
       {displayedItems.map(item => (
             <Paper shadow='lg' radius='lg' p='xl' key={item.id} className="list">
-              <Button onClick={() => toggleComplete(item.id)}>
+              <Button 
+                onClick={() => toggleComplete(item.id)}
+                color={item.complete ? 'red' : 'green'}
+              >
                 {item.complete ? 'Completed' : 'Pending'}
               </Button>
               <p>{item.text}</p>
