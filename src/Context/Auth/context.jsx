@@ -1,6 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
 import cookie from 'react-cookies';
-// import { decode } from 'jsonwebtoken';
 import { jwtDecode } from 'jwt-decode';
 
 
@@ -32,14 +31,13 @@ export const LoginContext = createContext();
 const LoginProvider = ({ children }) => {
   const [state, setState] = useState({
     loggedIn: false,
-    can: can,
-    login: login,
-    logout: logout,
+    token: null,
     user: { capabilities: [] },
     error: null,
   });
 
   function can(capability) {
+    console.log('CAN FUNCTION STATE', state);
     return state?.user?.capabilities?.includes(capability);
   }
 
@@ -89,10 +87,14 @@ const LoginProvider = ({ children }) => {
       validateToken(token);
     }
   }, []);
-  
 
+  useEffect(() => {
+    console.log('USER HAS BEEN UPDATED', state.user);
+  }, [state.user]);
+  
+  console.log("THIS IS CURRENT AUTH STATE", state);
   return (
-    <LoginContext.Provider value={state}>
+    <LoginContext.Provider value={{...state, can, login, logout}}>
       {children}
     </LoginContext.Provider>
   );
