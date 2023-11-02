@@ -6,6 +6,7 @@ import { Button, TextInput, Paper, Text, Slider, Grid } from '@mantine/core';
 import './styles.scss';
 import { SettingsContext } from '../../Context/Settings';
 import SettingsForm from '../SettingsForm';
+// import Auth from '../Auth/auth';
 
 const Todo = () => {
   const [settings] = useContext(SettingsContext);
@@ -45,7 +46,7 @@ const Todo = () => {
               <li>Items per page: {settings.itemsToShow}</li>
             </ul>
           </div>
-
+          {/* <Auth capability="create"> */}
           <form onSubmit={handleSubmit}>
             <Paper padding="md" className="todo-form">
               <Text size="lg">Add To Do Item</Text>
@@ -68,6 +69,7 @@ const Todo = () => {
               </Button>
             </Paper>
           </form>
+          {/* </Auth> */}
         </div>
         <SettingsForm />
       </Grid.Col>

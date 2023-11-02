@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react';
 import cookie from 'react-cookies';
+// import { decode } from 'jsonwebtoken';
 import { jwtDecode } from 'jwt-decode';
 
 
@@ -63,6 +64,10 @@ const LoginProvider = ({ children }) => {
   function validateToken(token) {
     try {
       let validUser = jwtDecode(token);
+      if (validUser.capabilities && typeof validUser.capabilities === "string") {
+        validUser.capabilities = validUser.capabilities.replace(/'/g, '"');
+        validUser.capabilities = JSON.parse(validUser.capabilities);
+      }
       setLoginState(true, token, validUser);
     } catch (e) {
       setLoginState(false, null, {}, e);
