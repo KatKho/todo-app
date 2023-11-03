@@ -1,0 +1,36 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3498db;
+    padding: 10px 20px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  
+    a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+  
+  .login-container {
+    display: flex;
+    gap: 15px;
+    color: white;
+    align-items: center;
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+}
+
+.login-input {
+    margin-right: 15px;
+}
+  

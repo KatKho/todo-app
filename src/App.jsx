@@ -1,7 +1,7 @@
 import React from 'react';
 import Todo from './Components/Todo';
-// import Login from './Components/Login/login';
-import Header from './Components/Header';
+import Login from './Components/Login/login';
+// import Header from './Components/Header';
 import '@mantine/core/styles.css';
 import { SettingsProvider } from './Context/Settings';
 import { MantineProvider} from '@mantine/core';
@@ -14,8 +14,8 @@ export default class App extends React.Component {
       <SettingsProvider> 
         <LoginProvider>
           <MantineProvider>
-            <Header />
-            {/* <Login /> */}
+            {/* <Header /> */}
+            <Login />
             <Auth>
               <Todo />
             </Auth>

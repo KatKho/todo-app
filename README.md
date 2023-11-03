@@ -23,9 +23,9 @@ In React, the Context API provides a mechanism to share data across components w
 - [PR2](https://github.com/KatKho/todo-app/pull/2)
 - [PR3](https://github.com/KatKho/todo-app/pull/3)
 - [PR4](https://github.com/KatKho/todo-app/pull/4)
+- [PR5](https://github.com/KatKho/todo-app/pull/5)
 
 ## Contributors
 
 - Ekaterina Khoroshilova
 - ChatGPT has been utilized for test
-  
