@@ -18,14 +18,17 @@ In React, the Context API provides a mechanism to share data across components w
 
 ## URLs:
 
-- ![UML](./public/todoapp.png)
+  ![UML](./public/todoapp.png)
+  
+- [Backend Server](https://github.com/KatKho/auth-server-todo)
 - [PR1](https://github.com/KatKho/todo-app/pull/1)
 - [PR2](https://github.com/KatKho/todo-app/pull/2)
 - [PR3](https://github.com/KatKho/todo-app/pull/3)
 - [PR4](https://github.com/KatKho/todo-app/pull/4)
 - [PR5](https://github.com/KatKho/todo-app/pull/5)
+- [PR6](https://github.com/KatKho/todo-app/pull/6)
 
 ## Contributors
 
 - Ekaterina Khoroshilova
-- ChatGPT has been utilized for test
+- ChatGPT has been utilized for tests

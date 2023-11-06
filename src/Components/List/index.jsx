@@ -4,22 +4,31 @@ import { Pagination, Paper, Button } from '@mantine/core';
 import './styles.scss';
 import Auth from '../Auth/auth';
 
-const List = ({ list, setList }) => {
+const List = ({ list, setList, axiosInstance })  => {
   const [settings] = useContext(SettingsContext);
 
-  const toggleComplete = (id) => {
-    const items = list.map( item => {
-      if ( item.id === id ) {
-        return { ...item, complete: !item.complete };
-      }
-      return item;
-    });
-    setList(items);
-  };
+  const toggleComplete = async (id) => {
+    const itemToToggle = list.find(item => item.id === id);
 
-  function deleteItem(id) {
-    const items = list.filter( item => item.id !== id );
-    setList(items);
+    if (itemToToggle) {
+      try {
+        const updatedItem = { ...itemToToggle, complete: !itemToToggle.complete };
+        await axiosInstance.put(`/todo/${id}`, updatedItem);
+        setList(list.map(item => item.id === id ? updatedItem : item));
+      } catch (error) {
+        console.error('Error updating item:', error);
+      }
+    }
+  };
+  
+  async function deleteItem(id) {
+    try {
+      await axiosInstance.delete(`/todo/${id}`);
+      const filteredList = list.filter(item => item.id !== id);
+      setList(filteredList);
+    } catch (error) {
+      console.error('Error deleting item:', error);
+    }
   }
 
   const filteredList = settings.hideCompleted ? list : list.filter(item => !item.complete);

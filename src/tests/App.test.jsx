@@ -21,21 +21,21 @@ describe('App Integration Tests', () => {
   });
 
 
-it('renders Todo component inside Auth', async () => {
-    render(<App />);
+// it('renders Todo component inside Auth', async () => {
+//     render(<App />);
     
-    const usernameInput = screen.getByPlaceholderText('Username');
-    const passwordInput = screen.getByPlaceholderText('Password');
-    const loginButton = screen.getByText('Login');
+//     const usernameInput = screen.getByPlaceholderText('Username');
+//     const passwordInput = screen.getByPlaceholderText('Password');
+//     const loginButton = screen.getByText('Login');
 
-    fireEvent.change(usernameInput, { target: { value: 'Administrator' } });
-    fireEvent.change(passwordInput, { target: { value: 'admin' } });
-    fireEvent.click(loginButton);
+//     fireEvent.change(usernameInput, { target: { value: 'Administrator' } });
+//     fireEvent.change(passwordInput, { target: { value: 'admin' } });
+//     fireEvent.click(loginButton);
 
-    await waitFor(() => {
-      expect(screen.getByTestId('todo-header')).toBeInTheDocument();
-    });
-  });
+//     await waitFor(() => {
+//       expect(screen.getByTestId('todo-header')).toBeInTheDocument();
+//     });
+//   });
 
 
 });

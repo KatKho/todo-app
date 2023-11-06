@@ -25,7 +25,7 @@ const Login = () => {
       <div className="login-container">
         
       <When condition={context.loggedIn}>
-        <Text>Welcome, {context.user.name}!</Text>
+        <Text>Welcome, {context.user.username}!</Text>
         <Button onClick={context.logout}>Log Out</Button>
       </When>
 
